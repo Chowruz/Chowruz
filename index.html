@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chowruz Office</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0 20px;
+    }
+    .entrada {
+      background: linear-gradient(135deg, #0d47a1, #1976d2);
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+      border-radius: 10px;
+      margin: 20px auto 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .entrada-conteudo {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .titulo-principal {
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .descricao {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .botao-entrada {
+      display: inline-block;
+      background-color: #03dac6;
+      color: #121212;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .botao-entrada:hover {
+      background-color: #00bfa5;
+    }
+
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      margin: 0;
+      color: #bb86fc;
+    }
+    .botao-carrinho {
+      background-color: #03dac6;
+      color: #121212;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .botao-carrinho:hover {
+      background-color: #00bfa5;
+    }
+    .busca {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .busca input {
+      padding: 10px;
+      width: 60%;
+      border-radius: 5px;
+      border: none;
+      background: #1e1e1e;
+      color: #f0f0f0;
+      font-size: 16px;
+    }
+    .produtos, #carrinho {
+      transition: all 0.5s ease;
+    }
+    .oculto {
+      opacity: 0;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+    }
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+    .produto {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .produto:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+    }
+    .produto img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .produto h2 {
+      margin: 10px 0 5px;
+    }
+    .preco {
+      color: #03dac6;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .botao-comprar {
+      background-color: #bb86fc;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      color: #121212;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+    .botao-comprar:hover {
+      background-color: #9c6ee6;
+    }
+    .botao-comprar:active {
+      transform: scale(0.95);
+    }
+    #carrinho {
+      max-width: 900px;
+      margin: 0 auto 80px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+      text-align: center;
+    }
+    th {
+      color: #03dac6;
+    }
+    .total {
+      text-align: right;
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #03dac6;
+    }
+    .botao-finalizar {
+      margin-top: 20px;
+      background-color: #bb86fc;
+      color: #121212;
+      padding: 12px 25px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .botao-finalizar:hover {
+      background-color: #9c6ee6;
+    }
+  </style>
+</head>
+<body>
+  <section class="entrada">
+    <div class="entrada-conteudo">
+      <h1 class="titulo-principal">Chowruz Office</h1>
+      <p class="descricao">Bem-vindo ao nosso espaço. Onde ideias crescem e negócios acontecem.</p>
+      <a href="#produtos" class="botao-entrada">Explorar Produtos</a>
+    </div>
+  </section>
+
+  <div class="topo">
+    <h1>Loja Noturna</h1>
+    <button class="botao-carrinho" onclick="mostrarCarrinho()">Ver Carrinho (<span id="quantidadeTotal">0</span>)</button>
+  </div>
+
+  <div class="busca">
+    <input type="text" placeholder="Buscar produtos...">
+  </div>
+
+  <div class="produtos" id="produtos">
+    <div class="produto">
+      <img src="produto1.jpg" alt="Tênis Air Max">
+      <h2>Tênis Air Max</h2>
+      <p class="preco">R$ 479,99</p>
+      <button class="botao-comprar" onclick="adicionarCarrinho('Tênis Air Max', 479.99)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="produto2.jpg" alt="Jaqueta Esportiva">
+      <h2>Jaqueta Esportiva</h2>
+      <p class="preco">R$ 329,90</p>
+      <button class="botao-comprar" onclick="adicionarCarrinho('Jaqueta Esportiva', 329.90)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="produto3.jpg" alt="Camiseta Dry Fit">
+      <h2>Camiseta Dry Fit</h2>
+      <p class="preco">R$ 109,99</p>
+      <button class="botao-comprar" onclick="adicionarCarrinho('Camiseta Dry Fit', 109.99)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="produto4.jpg" alt="Mochila Urban">
+      <h2>Mochila Urban</h2>
+      <p class="preco">R$ 269,50</p>
+      <button class="botao-comprar" onclick="adicionarCarrinho('Mochila Urban', 269.50)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="produto5.jpg" alt="Shorts Performance">
+      <h2>Shorts Performance</h2>
+      <p class="preco">R$ 149,00</p>
+      <button class="botao-comprar" onclick="adicionarCarrinho('Shorts Performance', 149.00)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="produto6.jpg" alt="Boné Flex Pro">
+      <h2>Boné Flex Pro</h2>
+      <p class="preco">R$ 89,[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/ermogenes/aulas-programacao-web/tree/291ef22fb4301268f9fc58b622726be720205738/content%2Fdom.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/RTPorfirio/Carranca/tree/17488c2e139ffb19b9c44df95df7458a1a5bb090/index.php?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")
